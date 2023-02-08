@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ELM Select Tailwind</title>
+  <style>
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
+  </style>
+</head>
+
+<body>
+  <div id="example_select_1"></div>
+  <div id="example_multi_select_1"></div>
+  <script type="module">
+    import Select_1 from "./src/Select_1.elm"
+    import MultiSelect_1 from "./src/MultiSelect_1.elm"
+
+    console.log(Select_1)
+    Select_1.Elm.Select_1.init({
+      node: document.getElementById("example_select_1")
+    })
+    MultiSelect_1.Elm.MultiSelect_1.init({
+      node: document.getElementById("example_multi_select_1")
+    })
+
+  </script>
+</body>
+
+</html>
