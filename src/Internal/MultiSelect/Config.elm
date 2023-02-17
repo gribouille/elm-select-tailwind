@@ -1,6 +1,6 @@
 module Internal.MultiSelect.Config exposing (..)
 
-import Internal.MultiSelect.State exposing (State)
+import Internal.MultiSelect.State exposing (State(..))
 
 
 type alias ID =
@@ -34,6 +34,11 @@ config getID getValue pipe =
         , pipe = pipe
         , class = ""
         }
+
+
+selectByID : List ID -> Config a msg -> State a -> State a
+selectByID v (Config c) (State s) =
+    State { s | selected = List.filter (\x -> List.member (c.getID x) v) s.data }
 
 
 withPlaceholder : String -> Config a msg -> Config a msg

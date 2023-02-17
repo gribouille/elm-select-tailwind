@@ -32,6 +32,11 @@ get (State s) =
     s.data
 
 
+select : Maybe a -> State a -> State a
+select v (State s) =
+    State { s | selected = v }
+
+
 selected : State a -> Maybe a
 selected (State s) =
     s.selected

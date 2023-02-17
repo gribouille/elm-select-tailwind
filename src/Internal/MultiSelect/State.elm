@@ -30,6 +30,11 @@ get (State s) =
     s.data
 
 
+select : List a -> State a -> State a
+select v (State s) =
+    State { s | selected = v }
+
+
 selected : State a -> List a
 selected (State s) =
     s.selected

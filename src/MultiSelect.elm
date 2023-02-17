@@ -1,5 +1,5 @@
 module MultiSelect exposing
-    ( ID, State, init, get, set
+    ( ID, State, init, get, selected, set, select, selectByID
     , Config, config, withClass, withPlaceholder
     , view, subscriptions
     )
@@ -9,7 +9,7 @@ module MultiSelect exposing
 
 # State
 
-@docs ID, State, init, get, set
+@docs ID, State, init, get, selected, set, select, selectByID
 
 
 # Config
@@ -64,11 +64,32 @@ set =
     Internal.MultiSelect.State.set
 
 
+{-| Set the selected items.
+-}
+select : List a -> State a -> State a
+select =
+    Internal.MultiSelect.State.select
+
+
+{-| Select or unselect items by ID.
+-}
+selectByID : List ID -> Config a msg -> State a -> State a
+selectByID =
+    Internal.MultiSelect.Config.selectByID
+
+
 {-| Get the data from the `State`.
 -}
 get : State a -> List a
 get =
     Internal.MultiSelect.State.get
+
+
+{-| Get the selected items from the `State`.
+-}
+selected : State a -> List a
+selected =
+    Internal.MultiSelect.State.selected
 
 
 {-| Initialize the component's configuration.

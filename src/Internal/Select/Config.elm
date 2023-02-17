@@ -1,6 +1,7 @@
 module Internal.Select.Config exposing (..)
 
-import Internal.Select.State exposing (State)
+import Internal.Prelude exposing (find)
+import Internal.Select.State exposing (State(..))
 
 
 type alias ID =
@@ -36,6 +37,11 @@ config getID getValue pipe =
         , checkValue = False
         , class = ""
         }
+
+
+selectByID : Maybe ID -> Config a msg -> State a -> State a
+selectByID mv (Config c) (State s) =
+    State { s | selected = mv |> Maybe.andThen (\v -> find (\x -> c.getID x == v) s.data) }
 
 
 withCheck : Bool -> Config a msg -> Config a msg

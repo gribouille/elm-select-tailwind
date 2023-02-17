@@ -10,11 +10,11 @@ import Internal.Select.State exposing (..)
 
 view : Config a msg -> State a -> Html msg
 view (Config c) (State s) =
-    div [ class "relative inline-block" ]
-        [ div [ class "mx-auto max-w-xs" ]
+    div [ class "relative inline-block w-full mx-auto" ]
+        [ div [ class "mx-auto" ]
             [ input
                 [ type_ "text"
-                , class """block w-full rounded-xs border-gray-300 shadow-sm
+                , class """block w-full rounded border-gray-300 shadow-sm
                            focus:border-blue-400 focus:ring focus:ring-blue-200/50
                            disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500
                         """

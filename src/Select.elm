@@ -1,5 +1,5 @@
 module Select exposing
-    ( ID, State, init, get, set
+    ( ID, State, init, get, selected, set, select, selectByID
     , Config, config, withClass, withCheck, withPlaceholder
     , view, subscriptions
     )
@@ -9,7 +9,7 @@ module Select exposing
 
 # State
 
-@docs ID, State, init, get, set
+@docs ID, State, init, get, selected, set, select, selectByID
 
 
 # Config
@@ -57,6 +57,20 @@ init =
     Internal.Select.State.init
 
 
+{-| Get the data from the `State`.
+-}
+get : State a -> List a
+get =
+    Internal.Select.State.get
+
+
+{-| Get the selected item or Nothing.
+-}
+selected : State a -> Maybe a
+selected =
+    Internal.Select.State.selected
+
+
 {-| Set the data in the `State`.
 -}
 set : State a -> List a -> State a
@@ -64,11 +78,18 @@ set =
     Internal.Select.State.set
 
 
-{-| Get the data from the `State`.
+{-| Select or unselect (Nothing) an item.
 -}
-get : State a -> List a
-get =
-    Internal.Select.State.get
+select : Maybe a -> State a -> State a
+select =
+    Internal.Select.State.select
+
+
+{-| Select or unselect (Nothing) an item by ID.
+-}
+selectByID : Maybe ID -> Config a msg -> State a -> State a
+selectByID =
+    Internal.Select.Config.selectByID
 
 
 {-| Initialize the component's configuration.

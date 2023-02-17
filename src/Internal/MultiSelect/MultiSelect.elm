@@ -6,17 +6,18 @@ import Html.Events exposing (..)
 import Internal.MultiSelect.Config exposing (..)
 import Internal.MultiSelect.State exposing (..)
 import Internal.Prelude exposing (..)
+import Json.Decode as Decode
 import Svg as S
 import Svg.Attributes as SA
 
 
 view : Config a msg -> State a -> Html msg
 view (Config c) (State s) =
-    div [ class <| "w-full flex flex-col items-center h-64 mx-auto " ++ c.class ]
-        [ div [ class "w-full px-4" ]
+    div [ class <| "w-full flex flex-col items-center mx-auto " ++ c.class ]
+        [ div [ class "w-full mx-auto" ]
             [ div [ class "flex flex-col items-center relative" ]
                 [ div [ class "w-full" ]
-                    [ div [ class "my-2 p-1 flex border border-gray-200 bg-white rounded" ]
+                    [ div [ class "flex border border-gray-200 bg-white rounded" ]
                         [ viewSelectedItems (Config c) (State s)
                         , viewInputSearch (Config c) (State s)
                         , viewButtonShow (Config c) (State s)
@@ -25,7 +26,7 @@ view (Config c) (State s) =
                 , div
                     [ class <| """absolute shadow top-[100%] bg-white z-40
                                     w-full lef-0 rounded max-h-[300px]
-                                    overflow-y-auto""" ++ iff s.isOpened "" " hidden"
+                                    overflow-y-auto mt-2""" ++ iff s.isOpened "" " hidden"
                     ]
                     [ viewItems (Config c) (State s)
                     ]
@@ -44,9 +45,20 @@ viewInputSearch (Config c) (State s) =
             , value s.search
             , onInput (\x -> c.pipe <| State { s | search = x })
             , onFocus (c.pipe (State { s | isOpened = not s.isOpened }))
+            , onFocusIn (c.pipe (State { s | isOpened = True }))
             ]
             []
         ]
+
+
+onFocusOut : msg -> Attribute msg
+onFocusOut msg =
+    on "focusout" (Decode.succeed msg)
+
+
+onFocusIn : msg -> Attribute msg
+onFocusIn msg =
+    on "focusin" (Decode.succeed msg)
 
 
 viewButtonShow : Config a msg -> State a -> Html msg
@@ -126,8 +138,8 @@ viewItem getValue click x enable =
         ]
         [ div
             [ class <|
-                "flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative"
-                    ++ iff enable " border-blue-600" " hover:border-blue-100"
+                "flex w-full items-center p-2 pl-2 border-l-2 relative"
+                    ++ iff enable " border-blue-600" " border-transparent hover:border-blue-100"
             ]
             [ div [ class "w-full items-center flex" ]
                 [ div [ class "mx-2 leading-6" ]
