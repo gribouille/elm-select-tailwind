@@ -4,7 +4,8 @@
   "description": " ELM select component with autocompletion & tailwind",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel examples/index.html"
+    "dev": "parcel examples/index.html",
+    "doc": "elm-doc-preview"
   },
   "repository": {
     "type": "git",
@@ -28,6 +29,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "elm": "^0.19.1-5",
     "elm-analyse": "^0.16.5",
+    "elm-doc-preview": "^5.0.5",
     "elm-format": "^0.8.5",
     "elm-review": "^2.9.1",
     "elm-test": "^0.19.1-revision11",
