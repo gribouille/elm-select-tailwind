@@ -1,9 +1,10 @@
-module Internal.Subscription exposing (..)
+module Subscription exposing (subscription)
 
 import Browser.Events
 import Json.Decode as Decode
 
 
+subscription : msg -> Sub msg
 subscription msg =
     Browser.Events.onMouseDown (outsideTarget msg "select_dropdown")
 

@@ -1,14 +1,14 @@
-module Internal.MultiSelect.MultiSelect exposing (..)
+module MultiSelect.MultiSelect exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Internal.MultiSelect.Config exposing (..)
-import Internal.MultiSelect.State exposing (..)
-import Internal.Prelude exposing (..)
 import Json.Decode as Decode
+import MultiSelect.Config exposing (..)
+import MultiSelect.State exposing (..)
 import Svg as S
 import Svg.Attributes as SA
+import Util exposing (..)
 
 
 view : Config a msg -> State a -> Html msg
@@ -49,11 +49,6 @@ viewInputSearch (Config c) (State s) =
             ]
             []
         ]
-
-
-onFocusOut : msg -> Attribute msg
-onFocusOut msg =
-    on "focusout" (Decode.succeed msg)
 
 
 onFocusIn : msg -> Attribute msg
