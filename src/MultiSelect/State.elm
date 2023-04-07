@@ -1,4 +1,4 @@
-module Internal.MultiSelect.State exposing (..)
+module MultiSelect.State exposing (State(..), get, init, select, selected, set)
 
 
 type State a

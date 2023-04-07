@@ -1,11 +1,11 @@
-module Internal.Select.Select exposing (..)
+module Select.Select exposing (view)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Internal.Prelude exposing (..)
-import Internal.Select.Config exposing (..)
-import Internal.Select.State exposing (..)
+import Select.Config exposing (..)
+import Select.State exposing (..)
+import Util exposing (..)
 
 
 view : Config a msg -> State a -> Html msg
